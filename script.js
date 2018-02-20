@@ -20,4 +20,8 @@ var options = mapster.MAP_OPTIONS;
 
   	console.log("click");
   });
+
+
+ map.addMarker(37.791350,-122.435883,true);
+
 }(window, window.Mapster || (window.Mapster ={})));

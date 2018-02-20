@@ -20,7 +20,21 @@ var Mapster = (function(){
             google.maps.event.addListener(this.gMap,event,function(e){
                 callback.call(self,e);
             });
+        },
+        addMarker:function(lat,lng,draggable){
+            this._createMarker(lat,lng,draggable);
+        },
+        _createMarker:function(lat,lng,draggable){
+           var opts={     position:{
+                lat: lat,
+              lng: lng
+            },
+            map:map.gMap,
+            icon:'icon.png',
+            draggable:draggable
         }
+        return new google.maps.Marker(opts);
+    }
 
     }
     return Mapster;
