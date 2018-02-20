@@ -14,6 +14,12 @@ var Mapster = (function(){
             }else {
                 return this.gMap.getZoom();
             }
+        },
+        _on:function(event,callback){
+            var self = this;
+            google.maps.event.addListener(this.gMap,event,function(e){
+                callback.call(self,e);
+            });
         }
 
     }
