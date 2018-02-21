@@ -1,10 +1,16 @@
-(function(window,google,mapster){
+(function(window,googlez,List){
 
 
 var Mapster = (function(){
 
     function Mapster(elements,opts){
         this.gMap = new google.maps.Map(element,opts);
+        this.markers = List.create();
+        if(opts.cluster)
+        {
+            console.log("clusterrr");
+        this.markerClusterer = new MarkerClusterer(this.gMap,[],opts.cluster.options);
+        } 
     }
     Mapster.prototype={
 
@@ -28,12 +34,13 @@ var Mapster = (function(){
                 lng:opts.lng
             }
             marker= this._createMarker(opts);
-            if(opts.event){
-                this._on({
-                    obj:marker,
-                    event:opts.event.name,
-                    callback:opts.event.callback
-                });
+            if(this.markerClusterer){
+            this.markerClusterer.addMarker(marker);
+            }
+            //this._addMarker(marker);
+            this.markers.add(marker);
+            if(opts.events){
+               this._attachEvents(marker,opts.events);
             }
             if(opts.content){
                 //this._on({
@@ -50,6 +57,31 @@ var Mapster = (function(){
 
             return marker;
             
+        },
+        findBy:function(callback){
+            return this.markers.find(callback);
+        },
+        removeBy: function(callback){
+            var self = this;
+            self.markers.find(callback,function(markers){
+                    markers.forEach(function(marker){
+                        if(self.markerClusterer){
+                            self.markerClusterer.removeMarker(marker);
+                        }else 
+                        {marker.setMap(null);}
+                        
+                    });
+            });
+        },
+        _attachEvents: function(marker,events){
+            var self = this;
+            events.forEach(function(event){
+                self._on({
+                    obj:marker,
+                    event:event.name,
+                    callback:event.callback
+                });
+            });
         },
         _createMarker:function(opts){
         opts.map=this.gMap;
@@ -68,4 +100,4 @@ Mapster.create = function(element,opts){
 
 
 
-}(window, google));
+}(window, google,List));

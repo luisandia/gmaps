@@ -22,6 +22,23 @@ mapster.MAP_OPTIONS={
     },
     panControlOptions:{
     	position:google.maps.ControlPosition.LEFT_BOTTOM,
+    },
+    cluster:{
+    	options:{
+    		styles:[
+    		{
+    			url:'https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclusterer/images/m2.png',
+    			height:56,
+    			width:55,
+    			textColor:"#F00",
+    			textSize:18
+    		},{
+    			url:'https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclusterer/images/m1.png',
+    			height:56,
+    			width:55
+    		},
+    		]
+    	}
     }
 }
 
