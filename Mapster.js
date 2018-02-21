@@ -24,7 +24,7 @@ var Mapster = (function(){
         _on:function(opts){
             var self = this;
             google.maps.event.addListener(opts.obj,opts.event,function(e){
-                opts.callback.call(self,e);
+                opts.callback.call(self,e,opts.obj);
             });
         },
         addMarker:function(opts){

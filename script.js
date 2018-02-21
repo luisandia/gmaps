@@ -78,8 +78,9 @@ for ( var i = 0;i<10;i++){
  	content:"rico",
  	 	events:[{
  		name:"click",
- 		callback:function(){
+ 		callback:function(e,marker){
  			console.log("mi evento mark");
+ 			console.log(marker);
  		}
  	},
  	{
