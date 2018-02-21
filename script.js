@@ -22,7 +22,7 @@ var options = mapster.MAP_OPTIONS;
   });
 */
 
- map.addMarker({
+ var marker= map.addMarker({
  	id:1,
  	lat:37.791350,
  	lng:-122.435883,
@@ -34,7 +34,12 @@ var options = mapster.MAP_OPTIONS;
  		callback:function(){
  			console.log("mi evento mark");
  		}
- 	}
+ 	},
+ 	content:"i like food"
  });
+
+
+
+
 
 }(window, window.Mapster || (window.Mapster ={})));
