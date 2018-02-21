@@ -16,12 +16,25 @@ var options = mapster.MAP_OPTIONS;
   	console.log(e);
   });*/
   
-  map._on("click",function(e){
+  /*map._on("click",function(e){
 
   	console.log("click");
   });
+*/
 
-
- map.addMarker(37.791350,-122.435883,true);
+ map.addMarker({
+ 	id:1,
+ 	lat:37.791350,
+ 	lng:-122.435883,
+ 	visible:true,
+ 	draggable:true,
+ 	icon:'icon.png',
+ 	event:{
+ 		name:"click",
+ 		callback:function(){
+ 			console.log("mi evento mark");
+ 		}
+ 	}
+ });
 
 }(window, window.Mapster || (window.Mapster ={})));
